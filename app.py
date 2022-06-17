@@ -15,12 +15,18 @@ def get_weather(lat, lon, api_key):
     data = json.loads(response.text)
     return data
 
-@app.route('/<lat>/<lon>/<api_key>')
-def index(lat, lon, api_key ):
-    weather = get_weather(lat, lon, api_key)
-    #return render_template('index.html', weather=weather)
-    return "<p><b>Weather !</b></p><br><p>%s</p>" % weather
+@app.route('/')
+def index():
+    args = request.args
+    
+    lat = args['lat']
+    lon = args['lon']
+    api_key = os.environ['API_KEY']
+    
+    res = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}').text
+    
+    return f"{res}\n"
 
 if __name__ == "__main__":
     #print(get_weather(lat, lon, api_key))
-    index(lat, lon, api_key)
+    app.run(port=8081, debug=True)
