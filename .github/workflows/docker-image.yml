@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: docker/login-actions@v2 #se connecter au docker hub
+    - uses: docker/login-action@v2 #se connecter au docker hub
       with:
         username: ${{ secrets.username }}
         password: ${{ secrets.password }}
