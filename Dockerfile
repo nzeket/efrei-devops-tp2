@@ -2,7 +2,7 @@
 FROM python:3.10.1
 
 #Labels as key value pair
-LABEL maintainer="ekane3.github.io"
+LABEL maintainer="nzeketa"
 
 # Any working directory can be chosen as per choice like '/' or '/home' etc
 # i have chosen /app as working directory
