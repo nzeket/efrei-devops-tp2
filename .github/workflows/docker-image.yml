@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: docker/login-actions@v2 #se connecter au docker hub
+      with:
+        username: ${{ secrets.username }}
+        password: ${{ secrets.password }}
+     
+
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag nzeketa/efrei-devops-tp2:0.0.1
+        docker push nzeketa/efrei-devops-tp2:0.0.1
